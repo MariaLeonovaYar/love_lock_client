@@ -22,52 +22,49 @@ class App extends Component {
 
     render() {
         return (    
-          <div>
-            {Start}
+          <BrowserRouter>
+            <div>
+              <Navigation isLoggedIn = {this.state.isLoggedIn}/>
+                <Switch>
+                <Route
+                    path='/'
+                    component={Start}
+                    exact
+                  />
+                  <Route
+                    path='/Auth'
+                    component={Auth}
+                    exact
+                  />
+                   <Route
+                    path='/Register'
+                    component={Register}
+                    exact
+                  />
+                  <Route
+                    path='/Start'
+                    component={Start}
+                  />
+                  <Route
+                    path='/LockList'
+                    component={LockList}
+                  />
+                  <Route
+                    path='/Lock'
+                    component={Lock}
+                  />
+                  <Route
+                    path='/Success'
+                    component={Success}
+                    exact
+                  />
+                  <Route
+                  path='/LockContent'
+                  component={LockContent}
+                  />
+                </Switch>
             </div>
-        //   <BrowserRouter>
-        //     <div>
-        //       <Navigation isLoggedIn = {this.state.isLoggedIn}/>
-        //         <Switch>
-        //         <Route
-        //             path='/'
-        //             component={Start}
-        //             exact
-        //           />
-        //           <Route
-        //             path='/Auth'
-        //             component={Auth}
-        //             exact
-        //           />
-        //            <Route
-        //             path='/Register'
-        //             component={Register}
-        //             exact
-        //           />
-        //           <Route
-        //             path='/Start'
-        //             component={Start}
-        //           />
-        //           <Route
-        //             path='/LockList'
-        //             component={LockList}
-        //           />
-        //           <Route
-        //             path='/Lock'
-        //             component={Lock}
-        //           />
-        //           <Route
-        //             path='/Success'
-        //             component={Success}
-        //             exact
-        //           />
-        //           <Route
-        //           path='/LockContent'
-        //           component={LockContent}
-        //           />
-        //         </Switch>
-        //     </div>
-        //  </BrowserRouter>
+         </BrowserRouter>
         );
     }    
 
