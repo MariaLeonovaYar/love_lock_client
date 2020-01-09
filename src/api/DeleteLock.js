@@ -5,13 +5,13 @@ export const delete_lock_id= (id_lock) => {
        id_lock: id_lock
     };
     return axios
-        .post('http://server-lock.herokuapp/api/delete_lock_id', payload)
+        .post('http://localhost:5000/api/delete_lock_id', payload)
         .then(res => {
-            console.log('Данные успешно были отправлены');
-            return res.data;
+            console.log('Данные успешно были удалены',  res.data.data);
+            return res.data.data;
         })
         .catch((error) => {
-            console.log('Данные не были успешно отправлены');
+            console.log('Данные не были успешно удалены');
             console.log(error);
         });
 };

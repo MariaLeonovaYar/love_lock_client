@@ -2,28 +2,59 @@ import React, {Component} from 'react';
 import '../style/auth.css';
 import '../style/index.css';
 import {sendLockData} from "../api/SendLockData";
+import {getUserData} from "../api/UserData";
 
+var user;
 
 class Lock extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username: this.props.username
+            username: this.props.username,
+            data: this.reloadUserData()
           };
     }
+
+    reloadUserData = () => {
+        console.log("Запрос на получение данных..");
+        getUserData("12").then((data) => {
+            this.setState({'data': data});
+        });
+    };
+
     clickHandler() {
-        const username = "11";
-        const person = document.getElementById("person").value;
-        const design = document.getElementById("design").value;
-        const size = document.getElementById("size").value;
-        const message = document.getElementById("message").value;
-        sendLockData(username, person, design, size, message);
+      
+            const username = "12";
+            const person = document.getElementById("person").value;
+            const design = document.getElementById("design").value;
+            const size = document.getElementById("size").value;
+            const message = document.getElementById("message").value;
+            sendLockData(username, person, design, size, message);
         console.log(person, design, size, message);
     }
+
     render() {
-        return (
-       
+        let cardContent;
+
+        if (typeof(this.state.data) != "undefined"){
+            cardContent = ( 
+                <div className="card" style={{width: '24rem' }}>
+                <div className="form-group"></div>
+                    <div id="l-Text" class="l-Text">
+                    <div class="design_lock">
+                      <p>Пользователь: username</p>
+                      <p>У вас уже есть замочек.</p>
+                      <p> Для добавления нового необходимо удалить старый.</p>
+                </div>
+            </div>
+            </div>
+            
+            );
+        }
+
+        else{
+            cardContent = (
             <div className="answer_container">
                 <div class="l-Title">
                     <p>Выбери дизайн замочка</p>
@@ -108,12 +139,19 @@ class Lock extends Component {
                 </div>
                 </p>
                 <div class="design_lock">
-                <button class="button2" onClick={this.clickHandler}>Повесить на мост</button>
+                <button class="button2" onClick={this.clickHandler}><a class="navbar-brand" href="/Success">Повесить на мост</a></button>
                 </div>
             </div>
         
-        );
-    }    
+            );
+        }
 
+        return  (
+         
+         <div>
+            {cardContent}
+         </div>
+      );  
+        }
 }
 export default Lock;

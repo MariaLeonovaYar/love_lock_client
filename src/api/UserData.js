@@ -2,13 +2,11 @@ import axios from "axios";
 
 export const getUserData = (username) => {
     return axios
-        .get('http://server-lock.herokuapp/api/get_user_data', {
+        .get('http://localhost:5000/api/get_user_data', {
             params: {username: username}
         })
         .then(res => { 
                 let length = res.data.data.length;
-               
-                
                 let userData = new Array(length);
                 for (let i = 0; i < length; i++) {
                     userData[i] = new Array(6);

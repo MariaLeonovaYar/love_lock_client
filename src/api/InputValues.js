@@ -8,7 +8,7 @@ export const sendInputValue = (name, surname, username, password) => {
         password: password
     };
     return axios
-        .post('http://server-lock.herokuapp/api/send', payload)
+        .post('http://localhost:5000/api/send', payload)
         .then(res => {
             console.log('Данные успешно были отправлены');
             return res.data;

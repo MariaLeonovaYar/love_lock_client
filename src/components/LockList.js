@@ -3,6 +3,8 @@ import LockContent from "../components/LockContent";
 import {getUserData} from "../api/UserData";
 import {delete_lock_id} from "../api/DeleteLock";
 
+var ID = 3;
+
 class LockList extends Component {
 
     constructor(props) {
@@ -22,12 +24,12 @@ class LockList extends Component {
         
     };
 
-    clickDeleteHandler(id){
-        console.log("Запрос на удаление данных..");
-      //  const id_lock = this.state.data[5];
-        console.log(id)
-      // delete_lock_id(id_lock);
-    }
+    clickDeleteHandler = () => {
+        console.log("Запрос на удаление данных..");   
+        delete_lock_id(Number(ID)).then((data) => {
+            this.setState({'data': data});
+        });
+    };
 
     render() {   
       let cardContent = ( 
@@ -53,38 +55,48 @@ class LockList extends Component {
         else {
            
             if (this.state.data[1] === "yellow")
-            {
+            { ID = this.state.data[5]; 
                 cardContent = (
-                    <div id="l-Text" class="l-Text">
-                        <div class="design_lock">
+            <div className="card" style={{width: '24rem' }}>
+                <div className="form-group">
+                    <div id="l-Text" class="l-Text">    
+                    <div class="design_lock">
+                        <img className="image" src={require('../style/img/замок3.png')}/>
                         <p>Пользователь: {this.state.data[0]}</p>
-                        <p>Дизайн:<img className="image" src={require('../style/img/замок3.png')}/></p>
                         <p>Человек: {this.state.data[2]}</p>
                         <p>Сообщение: {this.state.data[3]}</p>
                         <p>Размер: {this.state.data[4]}</p>
-                        </div>
+                    </div>
                         <button type="submit" class="btn btn-danger" onClick={this.clickDeleteHandler}>Удалить замочек</button>   
                   </div>
+                  </div>
+                 </div> 
+                  
                 );
             }
             if (this.state.data[1] === "blue")
-            {
+            { ID = this.state.data[5]; 
                 cardContent = (
-                    <div id="l-Text" class="l-Text">  
-                    <div class="design_lock"> 
+            <div className="card" style={{width: '24rem' }}>
+                <div className="form-group">
+                    <div id="l-Text" class="l-Text">    
+                    <div class="design_lock">
+                        <img className="image" src={require('../style/img/замок2.png')}/>
                         <p>Пользователь: {this.state.data[0]}</p>
-                        <p>Дизайн:<img className="image" src={require('../style/img/замок2.png')}/></p>
                         <p>Человек: {this.state.data[2]}</p>
                         <p>Сообщение: {this.state.data[3]}</p>
                         <p>Размер: {this.state.data[4]}</p>
-                        </div>
+                    </div>
                         <button type="submit" class="btn btn-danger" onClick={this.clickDeleteHandler}>Удалить замочек</button>   
                   </div>
+                  </div>
+                 </div> 
+                  
                 );
             }
             if (this.state.data[1] === "red")
             {
-                var id = this.state.data[5];
+                ID = this.state.data[5]; 
                 cardContent = (
             <div className="card" style={{width: '24rem' }}>
                 <div className="form-group">
@@ -96,7 +108,7 @@ class LockList extends Component {
                         <p>Сообщение: {this.state.data[3]}</p>
                         <p>Размер: {this.state.data[4]}</p>
                     </div>
-                        <button type="submit" class="btn btn-danger" onClick={this.clickDeleteHandler(id)}>Удалить замочек</button>   
+                        <button type="submit" class="btn btn-danger" onClick={this.clickDeleteHandler}>Удалить замочек</button>   
                   </div>
                   </div>
                  </div> 
