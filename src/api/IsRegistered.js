@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const isRegistered = (username) => {
     return axios
-        .get('http://localhost:5000/api/is_registered', {
+        .get('http://server-lock.herokuapp/api/is_registered', {
             params: {username: username}
         })
         .then(res => { 
