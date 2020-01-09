@@ -9,7 +9,7 @@ export const sendLockData=(username, person, design, size, message) => {
         message: message
     };
     return axios
-        .post('http://server-lock.herokuapp/api/send_lock_data', payload)
+        .post('https://server-lock/api/send_lock_data', payload)
         .then(res => {
             console.log('Данные успешно были отправлены');
             return res.data;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUserData = (username) => {
     return axios
-        .get('http://server-lock.herokuapp/api/get_user_data', {
+        .get('https://server-lock/api/get_user_data', {
             params: {username: username}
         })
         .then(res => { 
