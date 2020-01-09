@@ -23,7 +23,7 @@ class App extends Component {
     render() {
         return (    
           <div>
-            <label>Я живой!</label>
+            <p>Я ЖИВОЙ!</p>
             </div>
         //   <BrowserRouter>
         //     <div>
