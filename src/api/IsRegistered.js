@@ -7,7 +7,7 @@ export const isRegistered = (username) => {
         })
         .then(res => { 
             let length = res.data.data.length;
-
+            console.log(res.data.data)
             console.log(String(length))
             let userData = new Array(length);
             for (let i = 0; i < length; i++) {
