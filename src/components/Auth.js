@@ -20,7 +20,7 @@ class Auth extends Component {
     }
 
     isRegistered = () => {
-	    console.log(username)
+	    console.log(username);
         isRegistered(String(document.getElementById("username").value)).then((data) => {  
             if(data.length != 0)
             this.setState({'isLoggedIn': true});
