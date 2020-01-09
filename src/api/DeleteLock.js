@@ -5,7 +5,7 @@ export const delete_lock_id= (id_lock) => {
        id_lock: id_lock
     };
     return axios
-        .post('https://server-lock/api/delete_lock_id', payload)
+        .post('http://server-lock.herokuapp.com/api/delete_lock_id', payload)
         .then(res => {
             console.log('Данные успешно были удалены',  res.data.data);
             return res.data.data;
