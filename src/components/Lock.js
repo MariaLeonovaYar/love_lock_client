@@ -139,7 +139,7 @@ class Lock extends Component {
                 </div>
                 </p>
                 <div class="design_lock">
-                <button class="button2" onClick={this.clickHandler}><a class="navbar-brand" href="/Success">Повесить на мост</a></button>
+                <button class="button2" onClick={this.clickHandler}>Повесить на мост</button>
                 </div>
             </div>
         
