@@ -7,6 +7,7 @@ export const getUserData = (username) => {
         })
         .then(res => { 
                 let length = res.data.data.length;
+
                 let userData = new Array(length);
                 for (let i = 0; i < length; i++) {
                     userData[i] = new Array(6);

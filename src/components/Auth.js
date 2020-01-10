@@ -1,33 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../style/auth.css';
-import {isRegistered} from "../api/IsRegistered";
-
+import {sendUsernamePassword} from "../api/Auth";
 class Auth extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          isLoggedIn: false,
-          data: []
-        };
-    }
     
     clickHandler() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        isRegistered(String(username))
- 
+        sendUsernamePassword(String(username), String(password));
     }
-
-    isRegistered = () => {
-	    
-        isRegistered(String(document.getElementById("username").value)).then((data) => {  
-            if(data.length != 0)
-            this.setState({'isLoggedIn': true});
-		
-        });    
-    };
-
+     
     render() {
         return (
             <div class="container">
@@ -36,11 +17,11 @@ class Auth extends Component {
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Логин</label>
-                            <input type="text" class="form-control" id="username"></input>
+                            <input type="text" class="form-control" id="username" required></input>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Пароль</label>
-                            <input type="password" class="form-control" id="password"></input>
+                            <input type="password" class="form-control" id="password" required></input>
                         </div>
                         <div class="form-group">
                             <div class="main-checkbox">

@@ -1,62 +1,75 @@
 import React, {Component} from 'react';
 import '../style/css/bootstrap.min.css';
-import '../style/index.css';
-import Auth from './Auth';
-
-
-function Menu(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <UserMenu />;
-  }
-  return <GuestMenu/>;
-}
-
-function UserMenu() {
-   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="btn-group-toggle" data-toggle="buttons">
-        <a class="navbar-brand" href="/">Выход |</a>
-        <a class="navbar-brand" href="/Start">Домашняя страница |</a>
-        <a class="navbar-brand" href="/Lock">Повесить замочек на мост|</a>
-        <a class="navbar-brand" href="/LockList">Список твоих замочков</a>
-        
-
-      </div>
-    </nav>
-   )
-}
-
-function GuestMenu() {
-  return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="btn-group-toggle" data-toggle="buttons">
-        <a class="navbar-brand" href="/Auth">Авторизация |</a>
-        <a class="navbar-brand" href="/Register">Регистрация |</a>
-        <a class="navbar-brand" href="/Start">Домашняя страница |</a>
-        <a class="navbar-brand" href="/Lock">Повесить замочек на мост|</a>
-        <a class="navbar-brand" href="/LockList">Посмотреть на замочек</a>
-      </div>
-    </nav>
-  )
-}
 
 class Navigation extends  Component  {
     constructor(props) {
       super(props);
-        this.state = {
-          isLoggedIn: this.props.isLoggedIn
-        };
+      this.state = {
+        isLoggedIn: (localStorage.getItem('isLoggedIn'))
+      }
+    }
+
+    set() {
+      this.setState({
+        isLoggedIn: localStorage.getItem('isLoggedIn')
+      });
+    }
+
+    componentDidMount() {
+      if(String(localStorage.getItem('isLoggedIn'))== 'true')
+        this.set()
+    }
+
+    clickHandler(){
+      localStorage.setItem('isLoggedIn', '');   
+      localStorage.setItem('username', '');
     }
 
   render() {
-    return (
-        <Menu isLoggedIn = {this.state.isLoggedIn}/>
-    );
+        if (String(this.state.isLoggedIn) == 'true')
+        {
+          return(
+            <div>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Домашняя страница</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/LockList">Мои замочки</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/Lock">Повесить замочек</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/" onClick={this.clickHandler}>Выход</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          );
+        }
+          else return (
+            <div>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/Auth">Авторизация</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/Register">Регистрация</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          );
   }
 }
 
 export default Navigation;
+
+
+
 
 
 

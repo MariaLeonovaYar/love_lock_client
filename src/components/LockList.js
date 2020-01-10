@@ -13,6 +13,7 @@ class LockList extends Component {
         this.state = {
             username: '',
             data: [[]]
+
           };
     }
 

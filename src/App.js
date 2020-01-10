@@ -7,24 +7,14 @@ import Start from './components/Start';
 import Lock from './components/Lock';
 import LockList from './components/LockList';
 import Success from './components/Success';
-import LockContent from './components/LockContent';
 import './style/css/bootstrap.min.css';
 
-
 class App extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          isLoggedIn: props.isLoggedIn
-        };
-    }
-
     render() {
-        return (    
+        return (
           <BrowserRouter>
             <div>
-              <Navigation isLoggedIn = {this.state.isLoggedIn}/>
+              <Navigation />
                 <Switch>
                 <Route
                     path='/'
@@ -35,7 +25,7 @@ class App extends Component {
                     path='/Auth'
                     component={Auth}
                     exact
-                  />
+                  />                
                    <Route
                     path='/Register'
                     component={Register}
@@ -56,11 +46,6 @@ class App extends Component {
                   <Route
                     path='/Success'
                     component={Success}
-                    exact
-                  />
-                  <Route
-                  path='/LockContent'
-                  component={LockContent}
                   />
                 </Switch>
             </div>

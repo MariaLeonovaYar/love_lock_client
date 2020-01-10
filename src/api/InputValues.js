@@ -8,13 +8,29 @@ export const sendInputValue = (name, surname, username, password) => {
         password: password
     };
     return axios
-        .post('http://server-lock.herokuapp.com/api/send', payload)
+        .post('http://server-lock.herokuapp.com/register', payload)
         .then(res => {
-            console.log('Данные успешно были отправлены');
-            return res.data;
+            let userData = String(res.data['message']);
+            if(name != '' && surname != ''&& username != '' && password != ''){
+            if (userData === 'true'){
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
+                window.location.replace("/");
+                return userData;
+            }
+   
+            else {
+                alert( "Введенное Вами имя уже используется!" );
+                return userData;
+            }
+        }
+        else {
+            alert( "Заполните, пожалуйста, все поля!" );
+            return userData;
+        }
         })
         .catch((error) => {
-            console.log('Данные не были успешно отправлены');
-            console.log(error);
+            alert('Ошибка регистрации.')
         });
+        
 };

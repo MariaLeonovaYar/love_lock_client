@@ -171,6 +171,7 @@ h2{
     table{
         text-align: center;
         width: 90vw;
+
     }
     
     .image {
@@ -178,6 +179,7 @@ h2{
         padding: 0;
         width: 10vw;
     }
+
 
     /*Кнопка*/
     .button1{
