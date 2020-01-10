@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const sendUsernamePassword = (username, password) => {
+    console.log(username, password);
     const payload = {
         username: username,
         password: password
