@@ -27,6 +27,6 @@ export const sendUsernamePassword = (username, password) => {
         }
         })
         .catch((error) => {
-            alert('Ошибка авторизации.')
+            alert('Ошибка авторизации.', error)
         });
 };
