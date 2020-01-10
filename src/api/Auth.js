@@ -1,13 +1,12 @@
 import axios from "axios";
 
 export const sendUsernamePassword = (username, password) => {
-    console.log(username, password);
     const payload = {
         username: username,
         password: password
     };
     return axios
-        .post('http://server-lock.herokuapp.com/login', payload)
+        .post('http://localhost:5000/login', payload)
         .then(res => {
             let userData = res.data['message'];
             if(username != '' && password != ''){
@@ -28,7 +27,6 @@ export const sendUsernamePassword = (username, password) => {
         }
         })
         .catch((error) => {
-            console.log(String(error))
             alert('Ошибка авторизации.')
         });
 };

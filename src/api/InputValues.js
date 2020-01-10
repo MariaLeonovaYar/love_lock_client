@@ -8,7 +8,7 @@ export const sendInputValue = (name, surname, username, password) => {
         password: password
     };
     return axios
-        .post('http://localhost:5000/register', payload)
+        .post('http://server-lock.herokuapp.com/register', payload)
         .then(res => {
             let userData = String(res.data['message']);
             if(name != '' && surname != ''&& username != '' && password != ''){
